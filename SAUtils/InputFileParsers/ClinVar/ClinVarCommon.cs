@@ -33,7 +33,11 @@ namespace SAUtils.InputFileParsers.ClinVar
             
             "conflicting interpretations of pathogenicity", // observed in VCV XML only
             "established risk allele", // observed in VCV XML only
-            "likely risk allele"                            // observed in VCV XML only
+            "likely risk allele",                            // observed in VCV XML only
+            "uncertain risk allele",
+            "low penetrance",
+            "pathogenic, low penetrance",
+            "no classifications from unflagged records"
         };
         public enum ReviewStatus
         {
@@ -46,7 +50,8 @@ namespace SAUtils.InputFileParsers.ClinVar
             conflicting_interpretations,
             expert_panel,
             practice_guideline,
-            no_interpretation_single
+            no_interpretation_single,
+            no_classifications_from_unflagged_records
             // ReSharper restore InconsistentNaming
         }
         public static readonly Dictionary<string, ReviewStatus> ReviewStatusNameMapping = new Dictionary<string, ReviewStatus>
@@ -67,7 +72,8 @@ namespace SAUtils.InputFileParsers.ClinVar
             ["classified by multiple submitters"]                    = ReviewStatus.multiple_submitters,
             ["criteria provided, multiple submitters, no conflicts"] = ReviewStatus.multiple_submitters_no_conflict,
             ["criteria provided, single submitter"]                  = ReviewStatus.single_submitter,
-            ["no interpretation for the single variant"]  = ReviewStatus.no_interpretation_single
+            ["no interpretation for the single variant"]  = ReviewStatus.no_interpretation_single,
+            ["no classifications from unflagged records"]  = ReviewStatus.no_classifications_from_unflagged_records
         };
 
         public static readonly Dictionary<ReviewStatus, string> ReviewStatusStrings = new Dictionary<ReviewStatus, string>
@@ -80,7 +86,8 @@ namespace SAUtils.InputFileParsers.ClinVar
             [ReviewStatus.multiple_submitters]             = "classified by multiple submitters",
             [ReviewStatus.conflicting_interpretations]     = "criteria provided, conflicting interpretations",
             [ReviewStatus.multiple_submitters_no_conflict] = "criteria provided, multiple submitters, no conflicts",
-            [ReviewStatus.no_interpretation_single]        = "no interpretation for the single variant"
+            [ReviewStatus.no_interpretation_single]        = "no interpretation for the single variant",
+            [ReviewStatus.no_classifications_from_unflagged_records] = "no classifications from unflagged records"
         };
         
         public static string[] GetSignificances(string description, string explanation)
