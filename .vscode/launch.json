@@ -1,0 +1,70 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Nirvana",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net6.0/Nirvana.dll",
+            "args": [
+                "--cache", "${input:cachePrefix}",
+                "--in", "${input:vcfPath}",
+                "--out", "${input:outputFileName}",
+                "--ref", "${input:refSequencePath}"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Nirvana with Supplementary Annotations",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net6.0/Nirvana.dll",
+            "args": [
+                "--cache", "${input:cachePrefix}",
+                "--in", "${input:vcfPath}",
+                "--out", "${input:outputFileName}",
+                "--ref", "${input:refSequencePath}",
+                "--sd", "${input:supplementaryDir}"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        }
+    ],
+    "inputs": [
+        {
+            "id": "cachePrefix",
+            "type": "promptString",
+            "description": "Input cache prefix",
+            "default": "path/to/cache/prefix"
+        },
+        {
+            "id": "vcfPath",
+            "type": "promptString",
+            "description": "Input VCF path",
+            "default": "path/to/input.vcf.gz"
+        },
+        {
+            "id": "outputFileName",
+            "type": "promptString",
+            "description": "Output file path",
+            "default": "output"
+        },
+        {
+            "id": "refSequencePath",
+            "type": "promptString",
+            "description": "Input compressed reference sequence path",
+            "default": "path/to/reference.seq.gz"
+        },
+        {
+            "id": "supplementaryDir",
+            "type": "promptString",
+            "description": "Input supplementary annotation directory",
+            "default": "path/to/supplementary/dir"
+        }
+    ]
+}
